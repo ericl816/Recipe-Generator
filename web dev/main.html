@@ -1,0 +1,69 @@
+<html>
+    <head>
+        
+        <title>百度一下此食物是否可以一起吃</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            #div_foodInput{
+                text-align: center;
+                margin:0 auto;
+                background-color: aqua;
+            }
+            #ul_foodInput{
+                text-align: center;
+                margin:0 auto;
+                list-style-position:inside;
+            }
+            #ul_foodInput .input_food{
+                margin:3px auto;
+                text-align: center;
+                min-width: 300px;
+                
+            }
+            #form_foodInput{
+                text-align: center;
+            }
+
+
+        </style>
+
+        
+    </head>
+    <body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+        <script src="mainScript.js"></script>
+
+        
+        
+        <div id="div_foodInput" >
+            <h1><u>菜单</u></h1>
+            <form id="form_foodInput" action="#" onsubmit="search(event)">
+                <ul id="ul_foodInput" >
+                    <li id="li_foodInput1">
+                        <input type="text" placeholder="食物1" id="input_food1" required="required" class="input_food">
+                    </li>
+					<li id="li_foodInput2">
+                        <input type="text" placeholder="食物2" id="input_food2" required="required" class="input_food">
+                    </li>
+					<button style="visibility:hidden;" type="button" onclick = "jianCai()" id="button_jianCai">X</button>
+                    
+                </ul>
+                <button type="button" onclick="jiaCai()" id="button_jiaCai">加菜</button> <br>
+                <button type="submit" id="button_search" >搜索</button>
+                <output id="output_search"></output>  
+            </form>
+        </div>
+			
+		<div id="div_results"></div>
+        <button onclick="test()">Test</button>
+      
+    </body>
+    
+
+</html>
