@@ -1,9 +1,9 @@
 MAIN APP
 	Website
 	List of Foods
-  Food Mixer
-    Safety Warning (Some Mixed Foods don't go well)
+	Recipe Results
+		Safety Warning (Some Mixed Foods in the recipes don't go well)
 Back-End (Flask)
 	Web Scraping (Selenium)
 	Parsing (BeautifulSoup)
-  ML Model (Preferably library)
+	ML Model (Preferably library)
