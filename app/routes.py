@@ -50,3 +50,5 @@ def write_to_file(text):
     file = open("testfile.txt", "w")
     file.write(text)
     file.close()
+
+app.run(debug=True)

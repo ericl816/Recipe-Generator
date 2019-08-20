@@ -1,12 +1,13 @@
 # ML_foodie
 
-A web app that takes in a list of foods and uses web scraping and machine learning to check whether they can be eaten together.
+A web app that takes in a list of foods from user provided input, scrapes the web with that data, parses the results, and then feeds it into a machine learning model to give the user the best meals and recipes!
 
 ### Project Hierarchy
 Web App
-- List of Foods
-- Recipe Results
-    - Safety Warning (Some Mixed Foods in the recipes don't go well)
+- List of Foods Available (Input)
+- Recipe Results (Output)
+    - Recipe Ratings (Our machine learning model assigns a score to each recipe)
+    - Safety Warning (Some mixed foods in the recipes don't go well)
 
 Back-End (Flask)
 - Web Scraping (Selenium)
