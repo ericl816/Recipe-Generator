@@ -1,0 +1,154 @@
+:root {
+  --bg-main: #fafafa;
+  /*--bg-medium: #333333;*/
+  --bg-dark: #101010;
+  /*--bg-nav: rgba(16,16,16,0.5);*/
+  /*--bg-nav: rgb(16,16,16);*/
+  --text-navbar: #d0d0d0;
+  --text-navbar-light: #fafafa;
+  --text: #333333;
+  --text-light: #fafafa;
+  --accent: #d544cd;
+  --accent-dark: #b524ad;
+}
+
+html, body {
+  height: 100%;
+  margin: 0px;
+  font-size: 1.1em;
+}
+
+body {
+  background: var(--bg-main);
+  overflow: scroll;
+  color: var(--text);
+  font-family: 'Raleway', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+/* NAVBAR */
+.bg-nav {
+  background: rgba(16,16,16, 0);
+}
+
+.bg-nav-about {
+  background: rgba(16,16,16, 1);
+}
+
+.nav-logo {
+  font-size: 1.1em;
+  font-family: 'Julius Sans One';
+}
+
+.site-header .navbar-nav .nav-link {
+  color: var(--text-navbar);
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: var(--text-navbar-light);
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+/* TEXT STYLES */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Julius Sans One', FreightSans,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
+.title-text {
+  font-weight: 50;
+  letter-spacing: 1.08px;
+  margin-bottom: .625rem;
+  line-height: 1.05;
+  font-size: 4.5rem;
+}
+
+
+/* HOMEPAGE BLOCK DISPLAY */
+.block-one {
+  background-image: url('background.png');
+  color: var(--text-light);
+  /*min-height: 65%;*/
+}
+
+.block-one-pad {
+  padding-top: 14rem;
+  padding-bottom: 3rem;
+}
+
+.block-two {
+  padding-top: 4rem;
+  background-image: url('bg-grey.png');
+  min-height: 80%;
+}
+
+.block-three {
+  padding-top: 4rem;
+  background-color: var(--bg-main);
+}
+
+/* ABOUT PAGE */
+.about-pad {
+  padding-top: 6rem;
+}
+
+/* IMAGE */
+.arrow-img {
+  max-width: 100%;
+  height: auto;
+
+  padding: .25rem;
+}
+
+.min-box {
+  min-height: 300px;
+  min-width: 100%;
+}
+
+.img-thumbnail {
+  border: 1px solid black;
+  padding: 0;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+  border: none;
+}
+
+
+.footer-styling {
+  border-top: 1px solid black;
+  background-image: url('background.png');
+  background-position: left center;
+  color: var(--text-light);
+}
+
+#div_foodInput {
+    text-align: center;
+    margin: 0 auto;
+    background-color: aqua;
+    display: flex;
+}
+#div_foodInput .title {
+  font-weight: bold;
+  justify-content: center;
+}
+#ul_foodInput {
+    text-align: center;
+    margin:0 auto;
+    list-style-position:inside;
+}
+#ul_foodInput .input_food {
+    margin:3px auto;
+    text-align: center;
+    min-width: 300px;
+}
+#form_foodInput {
+    text-align: center;
+}

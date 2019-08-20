@@ -4,5 +4,5 @@ MAIN APP
   Food Mixer
     Safety Warning (Some Mixed Foods don't go well)
 Back-End (Flask)
-  ML Model
+  ML Model (Preferably library)
   Parsing (BeautifulSoup)
