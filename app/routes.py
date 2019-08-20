@@ -14,15 +14,15 @@ import web_scraper
 @app.route('/')
 @app.route('/index')
 def hello(filename="", error=""):
-    return render_template('index.html', filename=filename, error=error)
+    return render_template('index.html', page="WELCOME")
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', page="ABOUT")
 
 @app.route('/disclaimer')
 def disclaimer():
-    return render_template('disclaimer.html')
+    return render_template('disclaimer.html', page="DISCLAIMER")
 
 # Get food input from user in buttons
 @app.route('/get_input', methods=['GET', 'POST'])
