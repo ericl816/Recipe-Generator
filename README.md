@@ -5,9 +5,10 @@ A web app that takes in a list of foods and uses web scraping and machine learni
 ### Project Hierarchy
 Web App
 - List of Foods
-- Food Mixer
-    - Safety Warning (Some Mixed Foods don't go well)
+- Recipe Results
+    - Safety Warning (Some Mixed Foods in the recipes don't go well)
 
 Back-End (Flask)
-- ML Model
+- Web Scraping (Selenium)
 - Parsing (BeautifulSoup)
+- ML Model (Preferably library)
