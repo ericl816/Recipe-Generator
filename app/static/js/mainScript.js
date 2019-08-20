@@ -14,8 +14,8 @@ function setAttributes (element, attributes) {
   }
 }
 
+
 function search (event) {
-	console.log("hello world");
   event.preventDefault();
   if (!validFoodInputs()) return;
 	var resultsDiv = document.getElementById('div_results');
@@ -34,13 +34,6 @@ function search (event) {
 			var newIFrame = document.createElement("iframe");
 			setAttributes(newIFrame,{onload:"hideLoad()",height:"40%",class:"col-sm-12",src:myURL,id:"frame_result" + String(i) + '&' + String(j)});
 
-
-			newDiv.appendChild(newHeader);
-			newDiv.appendChild(newIFrame);
-			document.getElementById("div_results").appendChild(newDiv);
-		}
-	}
-	//document.getElementById('button_search').setAttribute("style","visibility:visible;");
 }
 
 function validFoodInputs(){
@@ -51,7 +44,8 @@ function validFoodInputs(){
 
 	for (var i=1; i<=foodNum; i++) {
 		foodInputs[i]=document.getElementById("input_food"+String(i)).value.trim();
-		if (!foodInputs[i]>0){
+		if (!foodInputs[i].length>0 && !foodInputs[i].match(/^[a-zA-Z]+$/))
+		{
 			document.getElementById("output_search").innerHTML="Please check your inputs";
 			return false;
 		}
@@ -71,7 +65,7 @@ function addFood () {
 	listNode.setAttribute("id", "li_foodInput" + String(foodNum));
 	var foodInput = document.createElement("INPUT");
 
-	setAttributes(foodInput,{class:"input_food", type:"text", placeholder: "Item " + String(foodNum), id:"input_food" + String(foodNum), required: "required"});
+	setAttributes(foodInput,{class:"input_food", type:"text", placeholder: "Item " + String(foodNum), id:"input_food" + String(foodNum),name:"input_food" + String(foodNum), required: "required"});
 	listNode.appendChild(foodInput);
 	document.getElementById('button_removeFood').setAttribute("style", "visibility: visible;");
 	listNode.appendChild(document.getElementById('button_removeFood'));
@@ -91,6 +85,7 @@ function removeFood () {
 	grandParent.removeChild(parent);
 }
 
+<<<<<<< HEAD
 function _scrape (output,foodA,foodB) {
 	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + 'Can ' + foodA + ' and ' + foodB + ' be eaten together？';
 	var dummyFrame = document.getElementById('dummyFrame');
@@ -132,3 +127,9 @@ function scrape (output,foodA,foodB) {
 function test () {
 }
 */
+=======
+function scrape () {
+
+}
+
+>>>>>>> 987d46fbbcb0d09d3a81348f836b9ba3ce033402

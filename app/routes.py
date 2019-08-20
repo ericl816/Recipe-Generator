@@ -7,8 +7,8 @@ from werkzeug.utils import secure_filename
 import sys
 from bs4 import BeautifulSoup
 sys.path.append("..") # Appends directory
-import ml # Import ml model file
-import web_scraper
+import ml as ML # Import ml model file
+import web_scraper as ws
 
 # Route all of our functions to URL
 @app.route('/')
@@ -43,8 +43,16 @@ def parse():
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
 @app.route('/recipe/<filename>')
 def recipe(filename):
+    # ML.run()
     return redirect(url_for('index'))
-    # ml.run()
+
+@app.route('/processListOfFoods', methods=['POST'])
+def processListOfFoods():
+    listOfFoods = []
+    for i in request.form:
+        listOfFoods.append(request.form[i])
+    ws.scrape(listOfFoods)
+    return redirect('/') #redirect to new page with recipes
 
 def write_to_file(text):
     file = open("testfile.txt", "w")
