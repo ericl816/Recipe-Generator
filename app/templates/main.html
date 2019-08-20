@@ -1,7 +1,7 @@
 <html>
     <head>
 
-        <title>百度一下此食物是否可以一起吃</title>
+        <title>ML_foodie</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
             #div_foodInput{
@@ -40,20 +40,20 @@
 
 
         <div id="div_foodInput" >
-            <h1><u>菜单</u></h1>
+            <h1><u>List of foods</u></h1>
             <form id="form_foodInput" action="#" onsubmit="search(event)">
                 <ul id="ul_foodInput" >
                     <li id="li_foodInput1">
-                        <input type="text" placeholder="食物1" id="input_food1" required="required" class="input_food">
+                        <input type="text" placeholder="Food1" id="input_food1" required="required" class="input_food">
                     </li>
 					<li id="li_foodInput2">
-                        <input type="text" placeholder="食物2" id="input_food2" required="required" class="input_food">
+                        <input type="text" placeholder="Food2" id="input_food2" required="required" class="input_food">
                     </li>
 					<button style="visibility:hidden;" type="button" onclick = "jianCai()" id="button_jianCai">X</button>
 
                 </ul>
-                <button type="button" onclick="jiaCai()" id="button_jiaCai">加菜</button> <br>
-                <button type="submit" id="button_search" >搜索</button>
+                <button type="button" onclick="jiaCai()" id="button_jiaCai">Add</button> <br>
+                <button type="submit" id="button_search" >Search</button>
                 <output id="output_search"></output>
             </form>
         </div>
