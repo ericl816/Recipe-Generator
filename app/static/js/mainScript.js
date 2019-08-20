@@ -27,10 +27,10 @@ function search (event) {
       setAttributes(newDiv,{class:"col-sm-12",id: "div_result" + String(i) + '&' + String(j)});
 
 			var newHeader = document.createElement("h3");
-			newHeader.innerHTML = foodInputs[i] + '和' + foodInputs[j];
+			newHeader.innerHTML = 'Searching ' + foodInputs[i] + ' and ' + foodInputs[j] + ':';
 
 			// setCustomURL
-			var myURL = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + foodInputs[i] + '和' + foodInputs[j] + '可以一起吃吗？';
+			var myURL = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + 'Can ' + foodInputs[i] + ' and ' + foodInputs[j] + ' be eaten together？';
 			var newIFrame = document.createElement("iframe");
 			setAttributes(newIFrame,{onload:"hideLoad()",height:"40%",class:"col-sm-12",src:myURL,id:"frame_result" + String(i) + '&' + String(j)});
 
@@ -92,14 +92,14 @@ function removeFood () {
 }
 
 function _scrape (output,foodA,foodB) {
-	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + foodA + '和' + foodB +' 可以一起吃吗？';
+	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + 'Can ' + foodA + ' and ' + foodB + ' be eaten together？';
 	var dummyFrame = document.getElementById('dummyFrame');
 	dummyFrame.setAttribute("src", myURL1);
 	console.log(dummyFrame.contentWindow.document.innerHTML);
 }
 
 function scrape (output,foodA,foodB) {
-	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + foodA +'和'+ foodB + ' 可以一起吃吗？';
+	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + 'Can ' + foodA + ' and ' + foodB + ' be eaten together？';
 	var proxy = 'https://cors-anywhere.herokuapp.com/';
 
 	console.log('myURL1: '+ myURL1);

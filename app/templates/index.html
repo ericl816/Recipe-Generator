@@ -43,6 +43,7 @@
 		<br>
 		<div class="container block-one-pad">
       <h1 class="display-4 title-text">ML Foodie</h1>
+      <br>
       {% if page %}
 			<h1 class="display-4 title-text">{{ page }}</h1>
       {% endif %}
@@ -64,20 +65,22 @@
                     <li id="li_foodInput2">
                         <input type="text" placeholder="Item 2" id="input_food2" required="required" class="input_food">
                     </li>
-				</ul>
-				<button class="btn btn-primary" type="button" onclick="addFood()" id="button_addFood">Add Food</button>
-				<button class="btn btn-primary" type="submit" id="button_search" >Search</button>
-				<button class="btn btn-primary" style="visibility:hidden;" type="button" onclick = "removeFood()" id="button_removeFood">X</button>
-			</form>
-		</div>
-
-          <div class="col-6 d-flex justify-content-center">
-            <output id="output_search"></output>
-          </div>
+                </ul>
+            <div class="row">
+              <div class="col-6 d-flex justify-content-center">
+                <button class="btn btn-primary" type="button" onclick="addFood()" id="button_addFood">Add Food</button>
+              </div>
+              <div class="col-6 d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit" id="button_search" >Search</button>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="visibility: hidden;" type="button" onclick = "removeFood()" id="button_removeFood">X</button>
+          </form>
         </div>
+        <output id="output_search"></output>
       </div>
     </div>
-
+  </div>
     <div class="block-three">
         <div id="div_results"></div>
         <!-- <button onclick="test()">Test</button> -->
