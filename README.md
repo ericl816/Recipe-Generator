@@ -7,6 +7,7 @@ Web App
 - List of Foods
 - Food Mixer
     - Safety Warning (Some Mixed Foods don't go well)
+
 Back-End (Flask)
 - ML Model
 - Parsing (BeautifulSoup)
