@@ -12,6 +12,7 @@ import web_scraper
 
 # Route all of our functions to URL
 @app.route('/')
+@app.route('/index')
 def hello(filename="", error=""):
     return render_template('index.html', filename=filename, error=error)
 
@@ -32,17 +33,17 @@ def get_input():
             values = request.form.getlist('')
         except Exception as e:
             return render_template('index.html', error=e)
-    return redirect(url_for('hello'))
+    return redirect(url_for('index'))
 
 # Parse food info with BeautifulSoup
 @app.route('/parse')
 def parse():
-    return redirect(url_for('hello'))
+    return redirect(url_for('index'))
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
 @app.route('/recipe/<filename>')
 def recipe(filename):
-    return redirect(url_for('hello'))
+    return redirect(url_for('index'))
     # ml.run()
 
 def write_to_file(text):

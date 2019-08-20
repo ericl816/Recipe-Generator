@@ -1,4 +1,4 @@
-:root {
+root {
   --bg-main: #fafafa;
   /*--bg-medium: #333333;*/
   --bg-dark: #101010;
@@ -41,10 +41,11 @@ body {
 
 .site-header .navbar-nav .nav-link {
   color: var(--text-navbar);
+  color: white;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: var(--text-navbar-light);
+  color: lightblue;
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -62,12 +63,15 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .625rem;
   line-height: 1.05;
   font-size: 4.5rem;
+  color: white;
 }
-
 
 /* HOMEPAGE BLOCK DISPLAY */
 .block-one {
-  background-image: url('background.png');
+  background-image: url('background1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   color: var(--text-light);
   /*min-height: 65%;*/
 }
@@ -86,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
 .block-three {
   padding-top: 4rem;
   background-color: var(--bg-main);
+  background-image: url('bg-grey.png');
 }
 
 /* ABOUT PAGE */
@@ -112,28 +117,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background-color: var(--accent);
+  background-color: #d544cd;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-dark);
+  background-color: #b524ad;
   border: none;
 }
 
+.list-unstyled {
+  color: white;
+}
 
 .footer-styling {
   border-top: 1px solid black;
-  background-image: url('background.png');
-  background-position: left center;
+  background-image: url('background1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   color: var(--text-light);
+}
+
+.desc {
+  text-align: center;
 }
 
 #div_foodInput {
     text-align: center;
     margin: 0 auto;
     background-color: aqua;
-    display: flex;
 }
 #div_foodInput .title {
   font-weight: bold;

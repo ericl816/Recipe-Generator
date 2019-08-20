@@ -1,4 +1,4 @@
-﻿var foodInputs = [""];
+var foodInputs = [""];
 var foodNum = 2;
 
 /*
@@ -15,6 +15,7 @@ function setAttributes (element, attributes) {
 }
 
 function search (event) {
+	console.log("hello world");
   event.preventDefault();
   if (!validFoodInputs()) return;
 	var resultsDiv = document.getElementById('div_results');
@@ -51,12 +52,12 @@ function validFoodInputs(){
 	for (var i=1; i<=foodNum; i++) {
 		foodInputs[i]=document.getElementById("input_food"+String(i)).value.trim();
 		if (!foodInputs[i]>0){
-			document.getElementById("output_search").innerHTML="请检查输入";
+			document.getElementById("output_search").innerHTML="Please check your inputs";
 			return false;
 		}
 	}
 	document.getElementById("output_search").setAttribute("style","visibility:visible;");
-	document.getElementById("output_search").innerHTML="请稍等...";
+	document.getElementById("output_search").innerHTML="Please wait...";
 	return true;
 }
 
@@ -129,6 +130,5 @@ function scrape (output,foodA,foodB) {
 
 /*
 function test () {
-
 }
 */
