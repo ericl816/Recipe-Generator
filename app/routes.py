@@ -8,7 +8,7 @@ import sys
 from bs4 import BeautifulSoup
 sys.path.append("..") # Appends directory
 import ml # Import ml model file
-import web_scraper
+import web_scraper as ws
 
 # Route all of our functions to URL
 @app.route('/')
@@ -45,6 +45,14 @@ def parse():
 def recipe(filename):
     return redirect(url_for('index'))
     # ml.run()
+
+@app.route('/processListOfFoods', methods=['POST'])
+def processListOfFoods():
+    listOfFoods = []
+    for i in request.form:
+        listOfFoods.append(request.form[i])
+    ws.scrape(listOfFoods)
+    return redirect('/') #redirect to new page with recipes
 
 def write_to_file(text):
     file = open("testfile.txt", "w")
