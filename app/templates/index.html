@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css"> -->
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
@@ -54,7 +54,7 @@
         <div id="div_foodInput">
             <h1 class="title">Input your Ingredients</h1>
             <p>Input your list of leftover ingredients and experiment with different recipes!</p>
-            <form method="post" id="form_foodInput" action="#" onsubmit="search(event)" action='/get_input'>
+            <form id="form_foodInput" action="#" onsubmit="search(event)" >
                 <ul id="ul_foodInput" >
                     <li id="li_foodInput1">
                         <input type="text" placeholder="Item 1" id="input_food1" required="required" class="input_food">
@@ -62,16 +62,15 @@
                     <li id="li_foodInput2">
                         <input type="text" placeholder="Item 2" id="input_food2" required="required" class="input_food">
                     </li>
-                    <button class="btn btn-primary" style="visibility:hidden;" type="button" onclick = "removeFood()" id="button_removeFood">X</button>
-                </ul>
-            </form>
-        </div>
-        <div class="row">
-  				<div class="col-6 d-flex justify-content-center">
-            <button class="btn btn-primary" type="button" onclick="addFood()" id="button_addFood">Add Food</button><br><br>
-          </div>
+				</ul>
+				<button class="btn btn-primary" type="button" onclick="addFood()" id="button_addFood">Add Food</button>
+				<button class="btn btn-primary" type="submit" id="button_search" >Search</button>
+				<button class="btn btn-primary" style="visibility:hidden;" type="button" onclick = "removeFood()" id="button_removeFood">X</button>
+			</form>
+		</div>
+       
           <div class="col-6 d-flex justify-content-center">
-            <button class="btn btn-primary" type="submit" id="button_search" >Search</button>
+            
             <output id="output_search"></output>
           </div>
         </div>
