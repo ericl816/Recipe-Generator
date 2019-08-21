@@ -1,7 +1,8 @@
 import requests, sys, bs4, os, json
-# API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
-# API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
-API_KEY = '1651adbed7ca2d868c1a057cd00a44b6'
+from collections import OrderedDict
+
+API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
+# API_KEY = '1651adbed7ca2d868c1a057cd00a44b6'
 
 def scrape(listOfFoods):
     print('web scrape function called')
@@ -29,9 +30,15 @@ class Scraper:
         # E.g.: https://www.food2fork.com/api/search?key=e3c679808020ba0a3aa594c8a2300160&q=Eggs
         response = requests.get(self.url)
         data = json.loads(response.text)
-        recipes = []
+        if 'error' in data and data['error'] == 'limit':
+            print("50 call limit reached...")
+            return None
+        if data['count'] == 0:
+            print("No recipe exists for given set of ingredients...")
+            return None
         if data['count'] > 0:
             self.num = min(self.num, data['count']) # Limited to only 50 calls per day
+        recipes = []
         # Return title, social ranking, image url, source_url, publisher_name, publisher_url for each recipe
         for i in range(self.num):
             rank = int(round(data['recipes'][i]['social_rank']))

@@ -28,6 +28,10 @@ def disclaimer():
 def results():
     return render_template('results.html', page="RECIPES")
 
+@app.route('/404')
+def error():
+    return render_template('404.html', page="ERROR 404")
+
 # Get food input from user in buttons
 @app.route('/get_input', methods=['GET', 'POST'])
 def get_input():
@@ -56,16 +60,17 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
+    if recipes_data == None:
+        return render_template('404.html', page="ERROR 404")
     # sort_recipes(recipes_data)
+    """
+    s = ""
     for title, social_rank, image_url, source_url, publisher_name, publisher_url in recipes_data:
-        print(title)
-        print(social_rank)
-        print(image_url)
-        print(source_url)
-        print(publisher_name)
-        print(publisher_url)
-    return render_template('results.html', page="RECIPES", data=recipes_data) # redirect to new page with recipes
+        s += title + "\n" + social_rank + "\n" + image_url + "\n" + source_url + "\n" + publisher_name + "\n" + publisher_url + "\n"
+        write_to_file(s)
+    """
+    return render_template('results.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
 @app.route('/recipe/<filename>')
