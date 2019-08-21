@@ -71,7 +71,6 @@
 		<div class="container">
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-<<<<<<< HEAD
 		<h1 class="desc">Bon Apetit!</h1><br>
 
 		<h5>Sort By:</h5>
@@ -82,17 +81,9 @@
 			<button type="submit">Sort</button>
 		</form>
 		
-=======
-        <h1 class="desc">Bon Apetit!</h1><br>
-      </div>
-  </div>
-
-  <div class="block-three">
->>>>>>> 3a48f21c8931116adbcd8dde34a52358689d6132
         <div class="container">
           <h1 class="desc">Recipes</h1><br>
           <div class="row">
-<<<<<<< HEAD
             <div class="masonry" id="div_recipes">
               {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
 				<div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
@@ -112,25 +103,6 @@
 				</div>
               {% endfor %}
                 </div>
-=======
-            <div id="imgcontainer" class="masonry">
-              <div class="item">
-                {% for title, social_rank, image_url, source_url, publisher_name, publisher_url in data: %}
-                  <a href={{ source_url }} class="recipe-link" target="_blank">
-                    <img src={{ image_url }} alt={{ title }} class="img-responsive"><br>
-                    <span class="recipe-name">
-                      {{ title }}
-                    </span>
-                  </a>
-                  <br>
-                  <span class="publisher">
-                    <a href={{ publisher_url }}>{{ publisher_name }}</a>
-                  </span>
-                  <span class="pull-right">
-                    <span class="badge badge-important" style="color: white;">{{ social_rank }}</span>
-                  </span>
-                {% endfor %}
->>>>>>> 3a48f21c8931116adbcd8dde34a52358689d6132
               </div>
             </div>
           </div>
