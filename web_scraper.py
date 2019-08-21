@@ -1,60 +1,33 @@
-""" TO DO:
-- Insert into routes.py
-- Parse JSON results
-- Feed parsed results into ML model
- """
-"""
-import requests
-from bs4 import BeautifulSoup
+import requests, sys, bs4, json
 
-API_KEY = 'apiKey=e94b15c6de0f48798c858f4c88a9d4ed'
-
-class Scraper:
-	def __init__(self, food, num_recipes):
-		self.food = food
-		self.score = 0
-
-		ingredients = food.split()
-		l = []
-		for i in range(len(ingredients)):
-			print(ingredients[i])
-			if i == 0:
-				l.append(ingredients[i])
-			else:
-				l.append(',+' + ingredients[i])
-		s = ''.join(l)
-
-		payload = {
-	        'fillIngredients': False,
-	        'ingredients': s,
-	        'limitLicense': False,
-	        'number': num_recipes,
-	        'ranking': 1
-	    }
-
-		self.url = 'https://api.spoonacular.com/recipes/findByIngredients?ingredients={}'.format(s) + num + '&ranking=1'
-		print(self.url)
-		# https://spoonacular.com/food-api/docs#Search-Recipes-by-Ingredients
-
-	def run (self):
-		response = requests.get(self.url)
-		print(response.text)
-		soup = BeautifulSoup(response.text, 'html.parser')
-
-s = Scraper('pizza pasta cake', 3)
-s.run()
-"""
-
-import requests, sys, bs4
-
-def scrape(listOfFoods):
+def scrapeRecipes(listOfFoods):
     print('web scrape function called')
-    listOfFoods.append('recipes')
-    myRequestURL = 'https://google.com/search?q='+" ".join(listOfFoods)
-    print(myRequestURL)
-    res = requests.get(myRequestURL)
-    soup = bs4.BeautifulSoup(res.text,"html.parser")
-    headlineResults = soup.find_all('a')
 
-    for h in headlineResults:
-        print(h)
+    API_Key = 'b156004663932aa132f0188da4715558'
+    ingredients = ",".join(listOfFoods)
+    
+    searchRequestURL = "https://www.food2fork.com/api/search?key={0}&q={1}".format(API_Key,ingredients)
+    searchRes = requests.get(searchRequestURL)
+
+    #obtain search response, returns a bunch of recipe ids
+    searchResultsDic = json.loads(searchRes.text)
+    #acquire each recipe details by id 
+    tmp = 1
+    for r in searchResultsDic['recipes']:
+        if(tmp >2):
+            break
+        tmp+=1
+        recipeID = r['recipe_id']
+        recipeRequestURL = "https://www.food2fork.com/api/get?key={0}&rId={1}".format(API_Key,recipeID)
+        recipeRes = requests.get(recipeRequestURL)
+        # recipeDic: 
+        # 	image_url: URL of the image
+        # 	source_url: Original Url of the recipe on the publisher's site
+        # 	f2f_url: Url of the recipe on Food2Fork.com
+        # 	title: Title of the recipe
+        # 	publisher: Name of the Publisher
+        # 	publisher_url: Base url of the publisher
+        # 	social_rank: The Social Ranking of the Recipe (As determined by our Ranking Algorithm)
+        # 	ingredients: The ingredients of this recipe
+        recipeDic = json.loads(recipeRes.text)
+        print(recipeDic)
