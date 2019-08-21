@@ -85,7 +85,6 @@ function removeFood () {
 	grandParent.removeChild(parent);
 }
 
-<<<<<<< HEAD
 function _scrape (output,foodA,foodB) {
 	var myURL1 = 'https://zhidao.baidu.com/search?ct=17&pn=0&tn=ikaslist&rn=10&fr=wwwt&word=' + 'Can ' + foodA + ' and ' + foodB + ' be eaten together？';
 	var dummyFrame = document.getElementById('dummyFrame');
@@ -127,9 +126,7 @@ function scrape (output,foodA,foodB) {
 function test () {
 }
 */
-=======
+
 function scrape () {
 
 }
-
->>>>>>> 987d46fbbcb0d09d3a81348f836b9ba3ce033402
