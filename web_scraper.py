@@ -8,7 +8,7 @@ def scrape(listOfFoods):
     listOfFoods.append('recipes')
     """for i in listOfFoods:
         print(i)"""
-    myRequestURL = 'https://google.com/search?q='+" ".join(listOfFoods)
+    myRequestURL = 'https://google.com/search?q='+",".join(listOfFoods)
     print(myRequestURL)
     res = requests.get(myRequestURL)
     soup = bs4.BeautifulSoup(res.text,"html.parser")
