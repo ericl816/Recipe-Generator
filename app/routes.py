@@ -52,10 +52,6 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-<<<<<<< HEAD
-    ws.scrapeRecipes(listOfFoods)
-    return redirect('/') #redirect to new page with recipes
-=======
     recipes_data = ws.Scraper(listOfFoods, 3).scrape()
     for title, social_rank, image_url, source_url in recipes_data:
         print(title)
@@ -69,9 +65,11 @@ def processListOfFoods():
 def recipe(filename):
     # ML.run()
     return redirect(url_for('index'))
->>>>>>> 37e1dfd7f83a7dd56dd5d62bdb35bd20d65c14c8
 
 def write_to_file(text):
     file = open("testfile.txt", "w")
     file.write(text)
     file.close()
+
+
+app.run(debug=True)
