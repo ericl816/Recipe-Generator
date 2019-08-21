@@ -65,34 +65,35 @@
 
   <div class="block-two">
 		<div class="container">
+      {% if data %}
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-      <h1 class="desc">Bon Apetit!</h1><br>
-        <div id="container">
-          <div class="masonry">
-              <div class="item">
-                  {% if data %}
-                    {% for title, social_rank, image_url, source_url, publisher_name, publisher_url in data: %}
-                      <a href={{ source_url }} class="recipe-link" target="_blank">
-                        <img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
-                        <span class="recipe-name">
-                          {{ title }}
-                        </span>
-                      </a>
-                      <br/>
-                      <span class="publisher">
-                        <a href={{ publisher_url }}>{{ publisher_name }}</a>
-                      </span>
-                      <span class="pull-right">
-                        <span class="badge badge-important" style="color: white;">{{ social_rank }}</span>
-                      </span>
-                    {% endfor %}
-                  {% else %}
-                    <h5>API is not working currently. Check back later.</h5>
-                  {% endif %}
+        <h1 class="desc">Bon Apetit!</h1><br>
+        <div class="container">
+          <div class="row">
+            <div class="masonry">
+              {% for title, social_rank, image_url, source_url, publisher_name, publisher_url in data: %}
+                <a href={{ source_url }} class="recipe-link" target="_blank">
+                  <img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
+                  <span class="recipe-name">
+                    {{ title }}
+                  </span>
+                </a>
+                <br/>
+                <span class="publisher">
+                  <a href={{ publisher_url }}>{{ publisher_name }}</a>
+                </span>
+                <span class="pull-right">
+                  <span class="badge badge-important" style="color: white;">{{ social_rank }}</span>
+                </span>
+              {% endfor %}
                 </div>
+              </div>
             </div>
-          </div>
+      {% else %}
+        <!-- Can change to 404 page -->
+        <h1 class="desc">API is not working currently. Check back later.</h1>
+      {% endif %}
     </div>
   </div>
     <div class="block-three">
