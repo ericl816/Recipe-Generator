@@ -4,6 +4,6 @@ MAIN APP
 	Recipe Results
 		Safety Warning (Some Mixed Foods in the recipes don't go well)
 Back-End (Flask)
-	Web Scraping (Selenium)
+	Web Scraping (spoonacular API)
 	Parsing (BeautifulSoup)
 	ML Model (Preferably library)

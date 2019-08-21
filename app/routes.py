@@ -51,7 +51,7 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    ws.scrape(listOfFoods)
+    ws.scrapeRecipes(listOfFoods)
     return redirect('/') #redirect to new page with recipes
 
 def write_to_file(text):
