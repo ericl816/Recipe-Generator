@@ -79,6 +79,8 @@ h1, h2, h3, h4, h5, h6 {
 .block-one-pad {
   padding-top: 14rem;
   padding-bottom: 3rem;
+  text-align: center;
+  text-shadow: 1px 1px white;
 }
 
 .block-two {
@@ -88,7 +90,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .block-three {
-  padding-top: 4rem;
+  padding-top: 0rem;
   background-color: var(--bg-main);
   background-image: url('bg-grey.png');
 }
@@ -151,6 +153,7 @@ h1, h2, h3, h4, h5, h6 {
 #div_foodInput .title {
   font-weight: bold;
   justify-content: center;
+  margin: 0 auto;
 }
 #ul_foodInput {
     text-align: center;
@@ -158,10 +161,15 @@ h1, h2, h3, h4, h5, h6 {
     list-style-position:inside;
 }
 #ul_foodInput .input_food {
-    margin:3px auto;
+    margin: 3px auto;
     text-align: center;
     min-width: 300px;
 }
 #form_foodInput {
     text-align: center;
+    margin: 0 auto;
+}
+#output_search {
+  text-align: center;
+  margin: 0 auto;
 }
