@@ -28,8 +28,8 @@ class Scraper:
         response = requests.get(self.url)
         data = json.loads(response.text)
         recipes = []
-        self.num = min(3, min(self.num, data['count'])) # Limited to only 50 calls per day
-        # Return title, social ranking, and image url for each recipe
+        self.num = min(self.num, data['count']) # Limited to only 50 calls per day
+        # Return title, social ranking, image url, and source_url for each recipe
         for i in range(self.num):
             recipes.append([data['recipes'][i]['title'], str(data['recipes'][i]['social_rank']), data['recipes'][i]['image_url'], data['recipes'][i]['source_url']])
         return recipes

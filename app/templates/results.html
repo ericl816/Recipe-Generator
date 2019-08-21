@@ -14,9 +14,9 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
 
     {% if page %}
-    <title>{{ page }} | ML Foodie</title>
+      <title>{{ page }} | ML Foodie</title>
     {% else %}
-    <title>ML Foodie</title>
+      <title>ML Foodie</title>
     {% endif %}
   </head>
 
@@ -49,7 +49,7 @@
 			<h1 class="display-4 title-text">ML Foodie</h1>
       <br>
       {% if page %}
-			<h1 class="display-4 title-text">{{ page }}</h1>
+        <h1 class="display-4 title-text">{{ page }}</h1>
       {% endif %}
 		</div>
 	</div>
@@ -59,7 +59,7 @@
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
         <div id="food_results">
-          <h1 style="font-weight: bold;">Bon Apetit!</h1><br>
+          <h1 class="enjoy">Bon Apetit!</h1><br>
           <div class="recipe-table">
             {% if data %}
               {% for title, social_rank, image_url, source_url in data: %}
@@ -70,6 +70,8 @@
         					</span>
         				</a>
               {% endfor %}
+            {% else %}
+              <h5>API is not working currently. Check back later.</h5>
             {% endif %}
           </div>
       </div>

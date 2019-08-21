@@ -52,7 +52,7 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    recipes_data = ws.Scraper(listOfFoods, 3).scrape()
+    recipes_data = ws.Scraper(listOfFoods, 5).scrape()
     for title, social_rank, image_url, source_url in recipes_data:
         print(title)
         print(social_rank)
@@ -70,3 +70,5 @@ def write_to_file(text):
     file = open("testfile.txt", "w")
     file.write(text)
     file.close()
+
+# export FLASK_ENV=development
