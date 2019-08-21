@@ -87,6 +87,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 4rem;
   background-image: url('bg-grey.png');
   min-height: 80%;
+  padding-bottom: 100px;
 }
 
 .block-three {
