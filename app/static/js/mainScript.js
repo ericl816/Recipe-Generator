@@ -127,6 +127,4 @@ function test () {
 }
 */
 
-function scrape () {
 
-}
