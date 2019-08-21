@@ -100,13 +100,12 @@
     </div>
 
     {% else %}
-    <div class="block-three">
-      <div class="container">
-        <!-- Can change to 404 page -->
-        <h1 class="desc">API is not working currently. Check back later or try another search.</h1>
-
-    </div>
-  </div>
+      <div class="block-three">
+        <div class="container">
+          <!-- Can change to 404 page -->
+          <h1 class="desc">API is not working currently. Check back later or try another search.</h1>
+        </div>
+      </div>
     {% endif %}
 
   <footer class="page-footer font-small pt-4 footer-styling">
@@ -143,11 +142,18 @@
 <script type="text/javascript">
       // jQuery Masonry for image alignment
       $(function() {
-        var $container = $('#container');
+        var $container = $('#imgcontainer');
+        var oneColumnWidth = 251;
+        var numberOfColumns = Math.floor(Math.max($container.width() / oneColumnWidth, 1));
+        var columnWidth = $container.width() / numberOfColumns;
 
-        $container.imagesLoaded( function(){
+        console.dir({'columnWidth': columnWidth, numberOfColumns: numberOfColumns})
+
+        $container.imagesLoaded(function(){
           $container.masonry({
-            itemSelector : '.item'
+            itemSelector : '.item',
+            columnWidth : 251,
+            isFitWidth: true
           });
         });
       });

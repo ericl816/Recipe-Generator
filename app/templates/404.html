@@ -100,17 +100,7 @@
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
-      // jQuery Masonry for image alignment
-      $(function() {
-        var $container = $('#container');
-
-        $container.imagesLoaded( function(){
-          $container.masonry({
-            itemSelector : '.item'
-          });
-        });
-      });
-
+	
 		$(window).scroll(function() {
 			var scrollTop = $(this).scrollTop();
 			var elementHeight = $('.block-one').height();

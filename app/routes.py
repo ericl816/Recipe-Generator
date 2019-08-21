@@ -28,6 +28,10 @@ def disclaimer():
 def results():
     return render_template('results.html', page="RECIPES")
 
+@app.route('/test')
+def test():
+    return render_template('test.html', page="TESTING")
+
 @app.route('/404')
 def error():
     return render_template('404.html', page="ERROR 404")

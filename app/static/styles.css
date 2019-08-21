@@ -199,6 +199,10 @@ h1, h2, h3, h4, h5, h6 {
     color: #5C5C5C;
 }
 
+.recipe-title {
+  font-size: 30px;
+}
+
 .pull-right {
     float: right;
 }
@@ -212,6 +216,33 @@ h1, h2, h3, h4, h5, h6 {
     -moz-border-radius: 12px;
     border-radius: 12px;
 }
+
+.item .like-button {
+    display:none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index:2;
+}
+
+.container {
+    width: 1150px!important;
+    margin-left: auto;
+    margin-right: auto;
+    /*overflow: hidden;*/
+}
+
+.recipe-image{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+}
+
 
 .badge {
     padding-right: 9px;
