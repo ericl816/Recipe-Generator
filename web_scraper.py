@@ -36,17 +36,8 @@ class Scraper:
         # E.g.: https://www.food2fork.com/api/search?key=e3c679808020ba0a3aa594c8a2300160&q=Eggs
         response = requests.get(self.url)
         data = json.loads(response.text)
-<<<<<<< HEAD
         #print(data)
         recipes = []
-=======
-        if 'error' in data and data['error'] == 'limit':
-            print("50 call limit reached...")
-            return None
-        if data['count'] == 0:
-            print("No recipe exists for given set of ingredients...")
-            return None
->>>>>>> 3a48f21c8931116adbcd8dde34a52358689d6132
         if data['count'] > 0:
             self.num = min(self.num, data['count']) # Limited to only 50 calls per day
         recipes = []
