@@ -11,7 +11,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">   <!--Prevent favicon errors-->
 
     {% if page %}
     <title>{{ page }} | ML Foodie</title>
@@ -20,7 +20,7 @@
     {% endif %}
   </head>
 
-  <body style="overflow: scroll;">
+  <body style="overflow-x: hidden;">
 	<header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-nav fixed-top">
 		<div class="container">
@@ -62,7 +62,7 @@
             <h1 class="title">Input your Ingredients</h1>
             <p>Input your list of leftover ingredients and experiment with different recipes!</p>
             <form id="form_foodInput" method="POST" action="/processListOfFoods">
-                <ul id="ul_foodInput" >
+                <ul id="ul_foodInput">
                     <li id="li_foodInput1">
                         <input type="text" placeholder="Ingredient 1" name = "input_food1" id="input_food1" required="required" class="input_food">
                     </li>
@@ -85,10 +85,6 @@
       </div>
     </div>
   </div>
-    <div class="block-three">
-        <div id="div_results"></div>
-        <!-- <button onclick="test()">Test</button> -->
-      </div>
 
   <footer class="page-footer font-small pt-4 footer-styling">
 		<div class="container text-center text-md-left">

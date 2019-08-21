@@ -30,6 +30,10 @@ def disclaimer():
 def results():
     return render_template('results.html', page="RECIPES")
 
+@app.route('/404')
+def error():
+    return render_template('404.html', page="ERROR 404")
+
 # Get food input from user in buttons
 @app.route('/get_input', methods=['GET', 'POST'])
 def get_input():
@@ -59,7 +63,7 @@ def processListOfFoods():
     for i in request.form:
         listOfFoods.append(request.form[i])
    
-    # recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
+    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
     
    
 
@@ -67,8 +71,8 @@ def processListOfFoods():
     # with open("recipes_data.txt","wb") as fp:
     #     pickle.dump(recipes_data,fp)
     
-    with open("recipes_data.txt", "rb") as fp:   # Unpickling
-        recipes_data = pickle.load(fp)
+    # with open("recipes_data.txt", "rb") as fp:   # Unpickling
+    #     recipes_data = pickle.load(fp)
     
     recipes_data = ML.assignMLranking(recipes_data)
     print(recipes_data)
