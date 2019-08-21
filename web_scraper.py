@@ -1,5 +1,7 @@
 import requests, sys, bs4, os, json
-API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
+# API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
+# API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
+API_KEY = '1651adbed7ca2d868c1a057cd00a44b6'
 
 def scrape(listOfFoods):
     print('web scrape function called')
@@ -16,10 +18,10 @@ def scrape(listOfFoods):
         print(h)
 
 class Scraper:
-    def __init__(self, listOfFoods, num_recipes):
+    def __init__(self, listOfFoods, num_recipes, sort_method):
         ingredients = ','.join(listOfFoods)
         self.num = num_recipes
-        self.url = 'https://www.food2fork.com/api/search?key={0}&q={1}&sort=r'.format(API_KEY, ingredients)
+        self.url = 'https://www.food2fork.com/api/search?key={0}&q={1}&sort=r'.format(API_KEY, ingredients) if sort_method == 1 else 'https://www.food2fork.com/api/search?key={0}&q={1}&sort=t'.format(API_KEY, ingredients)
         print(self.url)
 
     def scrape (self):
@@ -28,8 +30,10 @@ class Scraper:
         response = requests.get(self.url)
         data = json.loads(response.text)
         recipes = []
-        self.num = min(self.num, data['count']) # Limited to only 50 calls per day
-        # Return title, social ranking, image url, and source_url for each recipe
+        if data['count'] > 0:
+            self.num = min(self.num, data['count']) # Limited to only 50 calls per day
+        # Return title, social ranking, image url, source_url, publisher_name, publisher_url for each recipe
         for i in range(self.num):
-            recipes.append([data['recipes'][i]['title'], str(data['recipes'][i]['social_rank']), data['recipes'][i]['image_url'], data['recipes'][i]['source_url']])
+            rank = int(round(data['recipes'][i]['social_rank']))
+            recipes.append([data['recipes'][i]['title'], str(rank), data['recipes'][i]['image_url'], data['recipes'][i]['source_url'], data['recipes'][i]['publisher'], data['recipes'][i]['publisher_url']])
         return recipes

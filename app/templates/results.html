@@ -18,6 +18,14 @@
     {% else %}
       <title>ML Foodie</title>
     {% endif %}
+
+    <script src="{{ url_for('static', filename='js/modernizr.custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web2py_bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web2py.js') }}"></script>
+
+
   </head>
 
   <body style="overflow: scroll;">
@@ -54,28 +62,39 @@
 		</div>
 	</div>
 
+
   <div class="block-two">
 		<div class="container">
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-        <div id="food_results">
-          <h1 class="enjoy">Bon Apetit!</h1><br>
-          <div class="recipe-table">
-            {% if data %}
-              {% for title, social_rank, image_url, source_url in data: %}
-                <a href={{ source_url }} class="recipe-link" target="_blank">
-        					<img src={{ image_url }} alt={{ title }}><br/>
-        					<span class='recipe-name'>
-        						{{ title }}
-        					</span>
-        				</a>
-              {% endfor %}
-            {% else %}
-              <h5>API is not working currently. Check back later.</h5>
-            {% endif %}
+      <h1 class="desc">Bon Apetit!</h1><br>
+        <div id="container">
+          <div class="masonry">
+              <div class="item">
+                  {% if data %}
+                    {% for title, social_rank, image_url, source_url, publisher_name, publisher_url in data: %}
+                      <a href={{ source_url }} class="recipe-link" target="_blank">
+                        <img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
+                        <span class="recipe-name">
+                          {{ title }}
+                        </span>
+                      </a>
+                      <br/>
+                      <span class="publisher">
+                        <a href={{ publisher_url }}>{{ publisher_name }}</a>
+                      </span>
+                      <span class="pull-right">
+                        <span class="badge badge-important" style="color: white;">{{ social_rank }}</span>
+                      </span>
+                    {% endfor %}
+                  {% else %}
+                    <h5>API is not working currently. Check back later.</h5>
+                  {% endif %}
+                </div>
+            </div>
           </div>
-      </div>
     </div>
+  </div>
     <div class="block-three">
 
     </div>
@@ -98,16 +117,31 @@
 		</div>
 	</footer>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <script
     src="https://code.jquery.com/jquery-3.4.1.js"
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+</script>
+<script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
+
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
+      // jQuery Masonry for image alignment
+      $(function() {
+        var $container = $('#container');
+
+        $container.imagesLoaded( function(){
+          $container.masonry({
+            itemSelector : '.item'
+          });
+        });
+      });
+
 		$(window).scroll(function() {
 			var scrollTop = $(this).scrollTop();
 			var elementHeight = $('.block-one').height();

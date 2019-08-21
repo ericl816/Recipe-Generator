@@ -47,17 +47,24 @@ def parse():
         return jsonify(data=result)
     return redirect(url_for('index'))
 
+
+def sort_recipes(recipes_data):
+    recipes_data.sort()
+
 @app.route('/processListOfFoods', methods=['POST'])
 def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    recipes_data = ws.Scraper(listOfFoods, 5).scrape()
-    for title, social_rank, image_url, source_url in recipes_data:
+    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
+    # sort_recipes(recipes_data)
+    for title, social_rank, image_url, source_url, publisher_name, publisher_url in recipes_data:
         print(title)
         print(social_rank)
         print(image_url)
         print(source_url)
+        print(publisher_name)
+        print(publisher_url)
     return render_template('results.html', page="RECIPES", data=recipes_data) # redirect to new page with recipes
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
