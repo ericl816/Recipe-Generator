@@ -1,14 +1,7 @@
 import requests, sys, bs4, os, json
-<<<<<<< HEAD
 # API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
 # API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
 API_KEY = '4268c2c2835847dc035588f26ad36de6'
-=======
-from collections import OrderedDict
-
-API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
-# API_KEY = '1651adbed7ca2d868c1a057cd00a44b6'
->>>>>>> 3a48f21c8931116adbcd8dde34a52358689d6132
 
 def scrape(listOfFoods):
     print('web scrape function called')
