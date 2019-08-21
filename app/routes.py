@@ -1,4 +1,4 @@
-import os
+import os, time
 from app import app
 from os.path import join, dirname, realpath
 import requests
@@ -24,6 +24,10 @@ def about():
 def disclaimer():
     return render_template('disclaimer.html', page="DISCLAIMER")
 
+@app.route('/results')
+def results():
+    return render_template('results.html', page="RECIPES")
+
 # Get food input from user in buttons
 @app.route('/get_input', methods=['GET', 'POST'])
 def get_input():
@@ -36,14 +40,11 @@ def get_input():
     return redirect(url_for('index'))
 
 # Parse food info with BeautifulSoup
-@app.route('/parse')
+@app.route('/parse', methods = ['GET', 'POST'])
 def parse():
-    return redirect(url_for('index'))
-
-# Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
-@app.route('/recipe/<filename>')
-def recipe(filename):
-    # ML.run()
+    if request.method == 'POST':
+        result = handle(request.get_json())
+        return jsonify(data=result)
     return redirect(url_for('index'))
 
 @app.route('/processListOfFoods', methods=['POST'])
@@ -51,12 +52,21 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    ws.scrape(listOfFoods)
-    return redirect('/') #redirect to new page with recipes
+    recipes_data = ws.Scraper(listOfFoods, 3).scrape()
+    for title, social_rank, image_url, source_url in recipes_data:
+        print(title)
+        print(social_rank)
+        print(image_url)
+        print(source_url)
+    return render_template('results.html', page="RECIPES", data=recipes_data) # redirect to new page with recipes
+
+# Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
+@app.route('/recipe/<filename>')
+def recipe(filename):
+    # ML.run()
+    return redirect(url_for('index'))
 
 def write_to_file(text):
     file = open("testfile.txt", "w")
     file.write(text)
     file.close()
-
-app.run(debug=True)

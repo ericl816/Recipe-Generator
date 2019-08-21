@@ -14,11 +14,10 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
 
     {% if page %}
-    <title>{{ page | ML Foodie</title>
+    <title>{{ page }} | ML Foodie</title>
     {% else %}
-
+    <title>ML Foodie</title>
     {% endif %}
-    <title>Disclaimer | ML Foodie</title>
   </head>
 
   <body style="overflow: scroll;">
@@ -32,8 +31,8 @@
 		  <div class="collapse navbar-collapse" id="navbarToggle">
 			<div class="navbar-nav mr-auto"></div>
 			<div class="navbar-nav">
-				<a class="nav-item nav-link" href="/">Home</a>
-			  <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
         <a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
 			</div>
 		  </div>
@@ -55,22 +54,29 @@
 		</div>
 	</div>
 
-	<div class="block-two">
+  <div class="block-two">
 		<div class="container">
-      <h2 class="desc">Create different recipes with leftover food!</h2><br>
+      <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-        <div id="div_foodInput">
-          <h1 class="Disclaimer" style="font-weight: bold;">Disclaimer:</h1><br>
-          <h5>Note that since recipes are served from our machine learning model, results may vary.</h5>
-          <br>
-          <h5>Use ML Foodie's machine learning generated recipes at your discretion!</h5>
-          <br>
-        </div>
+        <div id="food_results">
+          <h1 style="font-weight: bold;">Bon Apetit!</h1><br>
+          <div class="recipe-table">
+            {% if data %}
+              {% for title, social_rank, image_url, source_url in data: %}
+                <a href={{ source_url }} class="recipe-link" target="_blank">
+        					<img src={{ image_url }} alt={{ title }}><br/>
+        					<span class='recipe-name'>
+        						{{ title }}
+        					</span>
+        				</a>
+              {% endfor %}
+            {% endif %}
+          </div>
       </div>
     </div>
+    <div class="block-three">
 
-  <div class="block-three">
-  </div>
+    </div>
 
   <footer class="page-footer font-small pt-4 footer-styling">
 		<div class="container text-center text-md-left">

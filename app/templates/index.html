@@ -13,7 +13,11 @@
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
 
+    {% if page %}
+    <title>{{ page }} | ML Foodie</title>
+    {% else %}
     <title>ML Foodie</title>
+    {% endif %}
   </head>
 
   <body style="overflow: scroll;">
@@ -71,7 +75,7 @@
                 <button class="btn btn-primary" type="button" onclick="addFood()" id="button_addFood">Add Food</button>
               </div>
               <div class="col-6 d-flex justify-content-center">
-                <button class="btn btn-primary" type="submit" id="button_search" >Search</button>
+                <button class="btn btn-primary" type="submit" id="button_search">Search</button>
               </div>
             </div>
             <button class="btn btn-primary" style="visibility: hidden;" type="button" onclick = "removeFood()" id="button_removeFood">X</button>
@@ -114,6 +118,7 @@
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
+
 		$(window).scroll(function() {
 			var scrollTop = $(this).scrollTop();
 			var elementHeight = $('.block-one').height();

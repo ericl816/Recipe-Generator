@@ -13,7 +13,11 @@
 
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
 
-    <title>About | ML Foodie</title>
+    {% if page %}
+    <title>{{ page }} | ML Foodie</title>
+    {% else %}
+    <title>ML Foodie</title>
+    {% endif %}
   </head>
 
   <body style="overflow: scroll;">
@@ -67,7 +71,7 @@
           <h6>Depends on how much you train the model!</h6>
           <br>
           <h5>4. Can I trust the meals and recipes that this app returns to me?</h5>
-          <h6>Every meal plan is assigned a numerical score from our model indicating how trustworthy it is. Recipes with higher scores are considered viable in this way. For more info, see our <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.</h6>
+          <h6>Every meal plan is assigned a numerical score from our model indicating how suitable it is. Recipes with higher scores are considered viable in this way. For more info, see our <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.</h6>
           <br>
           <h5>5. Who can use ML Foodie?</h5>
           <h6>Anyone can use use our web app! Foodies and non-foodies alike!</h6>
