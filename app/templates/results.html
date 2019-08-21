@@ -24,6 +24,7 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/web2py_bootstrap.js') }}"></script>
     <script src="{{ url_for('static', filename='js/web2py.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 
   </head>
@@ -64,28 +65,41 @@
 
 
   <div class="block-two">
+		<script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
+
 		<div class="container">
       {% if data %}
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-        <h1 class="desc">Bon Apetit!</h1><br>
+		<h1 class="desc">Bon Apetit!</h1><br>
+
+		<h5>Sort By:</h5>
+		<form onsubmit="sortRecipes(event)" action="#">
+			<input type="radio" name="rank" id ="rank_op_1" checked>Social Rank
+			<br>
+			<input type="radio" name="rank" id = "rank_op_2">Machine Learning Rank
+			<button type="submit">Sort</button>
+		</form>
+		
         <div class="container">
           <div class="row">
-            <div class="masonry">
-              {% for title, social_rank, image_url, source_url, publisher_name, publisher_url in data: %}
-                <a href={{ source_url }} class="recipe-link" target="_blank">
-                  <img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
-                  <span class="recipe-name">
-                    {{ title }}
-                  </span>
-                </a>
-                <br/>
-                <span class="publisher">
-                  <a href={{ publisher_url }}>{{ publisher_name }}</a>
-                </span>
-                <span class="pull-right">
-                  <span class="badge badge-important" style="color: white;">{{ social_rank }}</span>
-                </span>
+            <div class="masonry" id="div_recipes">
+              {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
+				<div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
+					<a href={{ source_url }} class="recipe-link" target="_blank">
+					<img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
+					<span class="recipe-name">
+						{{ title }}
+					</span>
+					</a>
+					<br/>
+					<span class="publisher">
+					<a href={{ publisher_url }}>{{ publisher_name }}</a>
+					</span>
+					<span class="pull-right">
+					<span class="badge badge-important" style="color: white;" id={{ title }} >{{ social_rank }}</span>
+					</span>
+				</div>
               {% endfor %}
                 </div>
               </div>

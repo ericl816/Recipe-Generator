@@ -9,6 +9,8 @@ from bs4 import BeautifulSoup
 sys.path.append("..") # Appends directory
 import ml as ML # Import ml model file
 import web_scraper as ws
+import pickle #for developement purposes
+
 
 # Route all of our functions to URL
 @app.route('/')
@@ -56,15 +58,23 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
-    # sort_recipes(recipes_data)
-    for title, social_rank, image_url, source_url, publisher_name, publisher_url in recipes_data:
-        print(title)
-        print(social_rank)
-        print(image_url)
-        print(source_url)
-        print(publisher_name)
-        print(publisher_url)
+   
+    # recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
+    
+   
+
+    
+    # with open("recipes_data.txt","wb") as fp:
+    #     pickle.dump(recipes_data,fp)
+    
+    with open("recipes_data.txt", "rb") as fp:   # Unpickling
+        recipes_data = pickle.load(fp)
+    
+    recipes_data = ML.assignMLranking(recipes_data)
+    print(recipes_data)
+
+    
+
     return render_template('results.html', page="RECIPES", data=recipes_data) # redirect to new page with recipes
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
@@ -73,9 +83,11 @@ def recipe(filename):
     # ML.run()
     return redirect(url_for('index'))
 
-def write_to_file(text):
-    file = open("testfile.txt", "w")
+def write_to_file(text,filename):
+    file = open(filename, "w")
     file.write(text)
     file.close()
 
+
 # export FLASK_ENV=development
+app.run(debug=True)

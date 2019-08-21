@@ -1,7 +1,7 @@
 import requests, sys, bs4, os, json
 # API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
 # API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
-API_KEY = '1651adbed7ca2d868c1a057cd00a44b6'
+API_KEY = '4268c2c2835847dc035588f26ad36de6'
 
 def scrape(listOfFoods):
     print('web scrape function called')
@@ -29,6 +29,7 @@ class Scraper:
         # E.g.: https://www.food2fork.com/api/search?key=e3c679808020ba0a3aa594c8a2300160&q=Eggs
         response = requests.get(self.url)
         data = json.loads(response.text)
+        #print(data)
         recipes = []
         if data['count'] > 0:
             self.num = min(self.num, data['count']) # Limited to only 50 calls per day

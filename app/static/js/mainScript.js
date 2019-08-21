@@ -68,6 +68,54 @@ function removeFood () {
 	grandParent.removeChild(parent);
 }
 
+function sortRecipes(event){
+	event.preventDefault();
+	socialRank = true;
+	if (document.getElementById("rank_op_2").checked)
+		socialRank = false;
+	recipes = Array.from(document.getElementById('div_recipes').children);
+
+	recipes.sort(function(a,b){
+		if(socialRank)
+		{
+			if(parseInt(a.getAttribute("social_rank"),10) >= parseInt(b.getAttribute("social_rank"),10)  )
+			{
+				return -1;
+			}
+			else
+				return 1;
+		}else{
+			
+			if(parseInt(a.getAttribute("ml_rank"),10) >= parseInt(b.getAttribute("ml_rank"),10)  )
+			{
+				return -1;
+			}
+			else
+				return 1;
+		}
+	})
+
+	var div_recipes = document.getElementById("div_recipes");
+	while(div_recipes.hasChildNodes())
+	{
+		div_recipes.removeChild(div_recipes.childNodes[0]);
+	}
+
+	for(var i = 0; i < recipes.length ; i++)
+	{
+		if(!socialRank)
+		{
+			recipes[i].childNodes[7].setAttribute("class","badge badge-pill badge-success");
+			recipes[i].childNodes[7].innerHTML = recipes[i].getAttribute("ml_rank")
+		}
+		else{
+			recipes[i].childNodes[7].setAttribute("class","badge badge-pill badge-danger");
+			recipes[i].childNodes[7].innerHTML = recipes[i].getAttribute("social_rank")
+		}
+		div_recipes.append(recipes[i]);
+	}
+}
+
 function scrape () {
 
 }
