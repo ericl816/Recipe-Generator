@@ -10,6 +10,6 @@ Web App
     - Safety Warning (Some mixed foods in the recipes don't go well)
 
 Back-End (Flask)
-- Web Scraping (Selenium)
+- Web Scraping (API)
 - Parsing (BeautifulSoup)
 - ML Model (Preferably library)
