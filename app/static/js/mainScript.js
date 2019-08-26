@@ -80,7 +80,36 @@ function sortRecipes(event){
 
 	recipes.sort(function(a, b) {
 		return socialRank ? parseInt(a.getAttribute("social_rank"),10) > parseInt(b.getAttribute("social_rank"),10) : parseInt(a.getAttribute("ml_rank"),10) > parseInt(b.getAttribute("ml_rank"),10);
+
+		/*
+		if(socialRank)
+		{
+			
+			if(parseInt(a.getAttribute("social_rank"),10) >= parseInt(b.getAttribute("social_rank"),10)  )
+			{
+				
+				return -1;
+			}
+			else
+				{ return 1;}
+		}else{
+			
+			if(parseInt(a.getAttribute("ml_rank"),10) >= parseInt(b.getAttribute("ml_rank"),10)  )
+			{
+				return -1;
+			}
+			else
+				return 1;
+		*/
 	});
+	for(var i = 0; i < recipes.length ; i++)
+	{
+		if(!socialRank)
+		{ console.log(recipes[i].getAttribute('ml_rank'));}
+		else
+		{ console.log(recipes[i].getAttribute('social_rank'));}
+	}
+
 	for(var i = 0; i < recipes.length ; i++)
 	{
 		if(!socialRank)

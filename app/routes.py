@@ -75,11 +75,12 @@ def processListOfFoods():
     if recipes_data == None:
         return render_template('404.html', page="ERROR 404")
 
-    # with open("recipes_data.txt","wb") as fp:
-    #     pickle.dump(recipes_data,fp)
+    """ with open("recipes_data.txt","wb") as fp:
+         pickle.dump(recipes_data,fp)
 
-    # with open("recipes_data.txt", "rb") as fp:   # Unpickling
-    #     recipes_data = pickle.load(fp)
+    with open("recipes_data.txt", "rb") as fp:   # Unpickling
+        recipes_data = pickle.load(fp)
+    """
 
     recipes_data = ML.assignMLranking(recipes_data)
     # print(recipes_data)
@@ -95,6 +96,9 @@ def write_to_file(text, filename):
     file = open(filename, "w")
     file.write(text)
     file.close()
+
+
+# For windows: app.run(debug=True)
 
 
 # export FLASK_ENV=development
