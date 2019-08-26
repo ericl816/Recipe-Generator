@@ -29,7 +29,7 @@ def disclaimer():
 
 @app.route('/results')
 def results():
-    return render_template('results.html', page="RECIPES")
+    return render_template('results_social_rank.html', page="RECIPES")
 
 # Find recipes with ML model
 """
@@ -68,13 +68,13 @@ def sortRecipes(rank_type,recipes_data):
         recipes_data.reverse()
         for recipe in recipes_data:
             recipe[7] = recipe [1]
-            print(recipe[1])
+            # print(recipe[1])
     else:
         recipes_data.sort(key=lambda x: int(x[6]))
         recipes_data.reverse()
         for recipe in recipes_data:
             recipe[7] = recipe [6]
-            print(recipe[6])
+            # print(recipe[6])
         
     
     return recipes_data
@@ -87,13 +87,13 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    #recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
 
         # with open("recipes_data.txt","wb") as fp:
     #     pickle.dump(recipes_data,fp)
 
-    with open("recipes_data.txt", "rb") as fp:   # Unpickling
-        recipes_data = pickle.load(fp)
+    # with open("recipes_data.txt", "rb") as fp:   # Unpickling
+    #     recipes_data = pickle.load(fp)
 
     if recipes_data == None:
         return render_template('404.html', page="ERROR 404")
@@ -107,20 +107,25 @@ def processListOfFoods():
         recipe.append(recipe[1])
 
     # print(recipes_data)
-    return render_template('results.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
+    return render_template('results_social_rank.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
 
 @app.route('/sortListOfFoods', methods=['POST'])
 def sortListOfFoods():
     global recipes_data
+    htmlPage = 'results_social_rank.html'
     rank_type = "social_rank"
-    print(request.form['rank'])
+    # print(request.form['rank'])
 
     if(request.form['rank'] == 'rank_op_2'):
         rank_type = "ml_rank" 
+        htmlPage = 'results_ml_rank.html'
     
     sorted_recipes_data = sortRecipes(rank_type,recipes_data)
+
     
-    return render_template('results.html', page="RECIPES", data=sorted_recipes_data , error=False) # redirect to new page with recipes
+
+    
+    return render_template(htmlPage, page="RECIPES", data=sorted_recipes_data , error=False) # redirect to new page with recipes
 
 
 
