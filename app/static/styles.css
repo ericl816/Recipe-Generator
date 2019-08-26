@@ -96,6 +96,14 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100%;
 }
 
+.block-three1 {
+  padding-top: 50px;
+  /* background-color: var(--bg-main); */
+  background-image: url('bg-grey.png');
+  padding-bottom: 50px;
+  min-height: 100%;
+}
+
 /* ABOUT PAGE */
 .about-pad {
   padding-top: 6rem;
@@ -212,6 +220,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .item img {
+    width: 233px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     border-radius: 12px;
@@ -253,10 +262,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #imgcontainer {
-    margin-left: -100px;
+    margin: 0 auto;
+}
+
+#div_recipes {
+    margin: 0 auto;
 }
 
 .badge-important {
+    color: white;
     background-color: #F9260C;
     z-index: 99;
 }
@@ -265,12 +279,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2em;
     margin: auto;
     column-count: 5;
-}
-
-.img-responsive {
-    width: 100%;
-    margin-bottom: 1em;
-    border: 0px solid #999;
 }
 
 @media(max-width: 800px) {

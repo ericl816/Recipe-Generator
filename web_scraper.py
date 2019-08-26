@@ -2,6 +2,7 @@ import requests, sys, bs4, os, json
 from collections import OrderedDict
 
 # API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
+# API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
 API_KEY = '4268c2c2835847dc035588f26ad36de6'
 
 def scrape(listOfFoods):

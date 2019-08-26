@@ -34,7 +34,7 @@
 				<a class="nav-item nav-link" href="/">Home</a>
 				<a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
 				<a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
-				<a class="nav-item nav-link" href="{{ url_for('test') }}">Test</a>
+				<!-- <a class="nav-item nav-link" href="{{ url_for('finder') }}">Find Recipes</a> -->
 			</div>
 		  </div>
 		</div>
@@ -62,7 +62,7 @@
         <div id="div_foodInput">
             <h1 class="title">Input your Ingredients</h1>
             <p>Input your list of leftover ingredients and experiment with different recipes!</p>
-            <form id="form_foodInput" method="POST" action="/processListOfFoods">
+            <form id="form_foodInput" method="POST" action="{{ url_for('processListOfFoods') }}">
                 <ul id="ul_foodInput">
                     <li id="li_foodInput1">
                         <input type="text" placeholder="Ingredient 1" name = "input_food1" id="input_food1" required="required" class="input_food">

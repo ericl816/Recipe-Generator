@@ -30,9 +30,12 @@ def disclaimer():
 def results():
     return render_template('results.html', page="RECIPES")
 
-@app.route('/test')
+# Find recipes with ML model
+"""
+@app.route('/finder')
 def test():
-    return render_template('test.html', page="TESTING")
+    return render_template('ML.html', page="ML")
+"""
 
 @app.route('/404')
 def error():
@@ -66,7 +69,7 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
     if recipes_data == None:
         return render_template('404.html', page="ERROR 404")
 
