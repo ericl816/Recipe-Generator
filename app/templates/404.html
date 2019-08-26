@@ -11,13 +11,21 @@
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
-    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">   <!--Prevent favicon errors-->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">   <!--Prevent favicon errors-->
 
     {% if page %}
       <title>{{ page }} | ML Foodie</title>
     {% else %}
       <title>ML Foodie</title>
     {% endif %}
+
+    <script src="{{ url_for('static', filename='js/modernizr.custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web2py_bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web2py.js') }}"></script>
+
+
   </head>
 
   <body style="overflow-x: hidden;">
@@ -31,10 +39,9 @@
 		  <div class="collapse navbar-collapse" id="navbarToggle">
 			<div class="navbar-nav mr-auto"></div>
 			<div class="navbar-nav">
-				<a class="nav-item nav-link" href="/">Home</a>
-				<a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
-				<a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
-				<!-- <a class="nav-item nav-link" href="{{ url_for('finder') }}">Find Recipes</a> -->
+        <a class="nav-item nav-link" href="/">Home</a>
+        <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+        <a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
 			</div>
 		  </div>
 		</div>
@@ -93,6 +100,16 @@
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
+      // jQuery Masonry for image alignment
+      $(function() {
+        var $container = $('#container');
+
+        $container.imagesLoaded( function(){
+          $container.masonry({
+            itemSelector : '.item'
+          });
+        });
+      });
 
 		$(window).scroll(function() {
 			var scrollTop = $(this).scrollTop();
