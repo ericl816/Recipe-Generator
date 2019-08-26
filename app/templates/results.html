@@ -77,8 +77,8 @@
         <div class="row">
           <div id="div_recipes">
             {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
-            <div class="item">
-              <div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
+            
+              <div id="{{ title }}" social_rank="{{ social_rank }}" ml_rank="{{ ml_rank }}" class = "item">
                 <a href={{ source_url }} class="recipe-link" target="_blank">
                   <img src={{ image_url }} alt={{ title }}><br/>
                   <span class='recipe-name'>
@@ -89,9 +89,9 @@
                   <a href={{ publisher_url }}>{{ publisher_name }}</a>
                 </span>
                 <span class="pull-right">
-                  <span class="badge badge-important" id={{ title }}>{{ social_rank }}</span>
+                  <span class="badge badge-important" id="rank{{ title }}">{{ social_rank }}</span>
                 </span>
-              </div>
+              
             </div>
             {% endfor %}
           </div>
