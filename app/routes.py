@@ -30,6 +30,13 @@ def disclaimer():
 def results():
     return render_template('results.html', page="RECIPES")
 
+# Find recipes with ML model
+"""
+@app.route('/test')
+def test():
+    return render_template('ML.html', page="ML")
+"""
+
 @app.route('/404')
 def error():
     return render_template('404.html', page="ERROR 404")
@@ -62,24 +69,19 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-   
-    recipes_data = ws.Scraper(listOfFoods, 5, 1).scrape()
-    
-   
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
+    if recipes_data == None:
+        return render_template('404.html', page="ERROR 404")
 
-    
     # with open("recipes_data.txt","wb") as fp:
     #     pickle.dump(recipes_data,fp)
-    
+
     # with open("recipes_data.txt", "rb") as fp:   # Unpickling
-    #      recipes_data = pickle.load(fp)
-    
+    #     recipes_data = pickle.load(fp)
+
     recipes_data = ML.assignMLranking(recipes_data)
-    print(recipes_data)
-
-    
-
-    return render_template('results.html', page="RECIPES", data=recipes_data) # redirect to new page with recipes
+    # print(recipes_data)
+    return render_template('results.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
 @app.route('/recipe/<filename>')
@@ -87,11 +89,10 @@ def recipe(filename):
     # ML.run()
     return redirect(url_for('index'))
 
-def write_to_file(text,filename):
+def write_to_file(text, filename):
     file = open(filename, "w")
     file.write(text)
     file.close()
 
 
 # export FLASK_ENV=development
-app.run(debug=True)

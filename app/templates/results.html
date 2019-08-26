@@ -2,7 +2,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -18,160 +18,139 @@
     {% else %}
       <title>ML Foodie</title>
     {% endif %}
-
-    <script src="{{ url_for('static', filename='js/modernizr.custom.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/web2py_bootstrap.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/web2py.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
-
-
   </head>
 
   <body style="overflow-x: hidden;">
-	<header class="site-header">
-	  <nav class="navbar navbar-expand-md navbar-dark bg-nav fixed-top">
-		<div class="container">
-		  <a class="navbar-brand mr-4 nav-logo" href="/">ML Foodie</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarToggle">
-			<div class="navbar-nav mr-auto"></div>
-			<div class="navbar-nav">
-        <a class="nav-item nav-link" href="/">Home</a>
-        <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
-        <a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
-			</div>
-		  </div>
-		</div>
-	  </nav>
-	</header>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-nav fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4 nav-logo" href="/">ML Foodie</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="navbar-nav mr-auto"></div>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+          <a class="nav-item nav-link" href="{{ url_for('disclaimer') }}">Disclaimer</a>
+        </div>
+        </div>
+      </div>
+      </nav>
+    </header>
 <!--
-	{% block content %}
-	{% endblock %} -->
+  {% block content %}
+  {% endblock %} -->
 
   <div class="block-one">
-		<br>
-		<div class="container block-one-pad">
-			<h1 class="display-4 title-text">ML Foodie</h1>
+    <br>
+    <div class="container block-one-pad">
+      <h1 class="display-4 title-text">ML Foodie</h1>
       <br>
       {% if page %}
         <h1 class="display-4 title-text">{{ page }}</h1>
       {% endif %}
-		</div>
-	</div>
+    </div>
+  </div>
 
 
-  {% if not error %}
   <div class="block-two">
-		<script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
-
-		<div class="container">
+    <div class="container">
       <h2 class="desc">Here are your generated recipes!</h2><br>
       <br>
-		<h1 class="desc">Bon Apetit!</h1><br>
+      <h1 class="desc">Bon Apetit!</h1><br>
 
-		<h5>Sort By:</h5>
-		<form onsubmit="sortRecipes(event)" action="#">
-			<input type="radio" name="rank" id ="rank_op_1" checked>Social Rank
-			<br>
-			<input type="radio" name="rank" id = "rank_op_2">Machine Learning Rank
-			<button type="submit">Sort</button>
-		</form>
-		
-        <div class="container">
-          <h1 class="desc">Recipes</h1><br>
-          <div class="row">
-            <div class="masonry" id="div_recipes">
-              {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
-				<div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
-					<a href={{ source_url }} class="recipe-link" target="_blank">
-					<img src={{ image_url }} alt={{ title }} class="img-responsive"><br/>
-					<span class="recipe-name">
-						{{ title }}
-					</span>
-					</a>
-					<br/>
-					<span class="publisher">
-					<a href={{ publisher_url }}>{{ publisher_name }}</a>
-					</span>
-					<span class="pull-right">
-					<span class="badge badge-important" style="color: white;" id={{ title }} >{{ social_rank }}</span>
-					</span>
-				</div>
-              {% endfor %}
-                </div>
+      <h5>Sort By:</h5>
+      <form onsubmit="sortRecipes(event)" action="#">
+        <input type="radio" name="rank" id ="rank_op_1" checked>Social Rank
+        <br>
+        <input type="radio" name="rank" id = "rank_op_2">Machine Learning Rank
+        <button type="submit">Sort</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="block-three1">
+    <div class="container">
+      <h1 class="desc">Recipes</h1><br>
+        <div class="row">
+          <div id="div_recipes">
+            {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
+            <div class="item">
+              <div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
+                <a href={{ source_url }} class="recipe-link" target="_blank">
+                  <img src={{ image_url }} alt={{ title }}><br/>
+                  <span class='recipe-name'>
+                    {{ title }}
+                  </span>
+                </a><br/>
+                <span class='publisher'>
+                  <a href={{ publisher_url }}>{{ publisher_name }}</a>
+                </span>
+                <span class="pull-right">
+                  <span class="badge badge-important" id={{ title }}>{{ social_rank }}</span>
+                </span>
               </div>
             </div>
+            {% endfor %}
           </div>
         </div>
     </div>
-
-    {% else %}
-    <div class="block-three">
-      <div class="container">
-        <!-- Can change to 404 page -->
-        <h1 class="desc">API is not working currently. Check back later or try another search.</h1>
-
-    </div>
   </div>
-    {% endif %}
 
   <footer class="page-footer font-small pt-4 footer-styling">
-		<div class="container text-center text-md-left">
-		  <div class="row">
-			<div class="col-md mt-md-0 mt-3">
-			  <h3 class="text-uppercase" style="color: white;">ML Foodie</h3>
-			</div>
-			<hr class="clearfix w-100 d-md-none pb-3">
-			<div class="col-md mb-md-0 mb-3 justify-content-end">
-				<h5 class="text-uppercase" style="color: white;">Created By</h5>
-				<ul class="list-unstyled">
-				  <li>Eric Liu</li>
+    <div class="container text-center text-md-left">
+      <div class="row">
+      <div class="col-md mt-md-0 mt-3">
+        <h3 class="text-uppercase" style="color: white;">ML Foodie</h3>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md mb-md-0 mb-3 justify-content-end">
+        <h5 class="text-uppercase" style="color: white;">Created By</h5>
+        <ul class="list-unstyled">
+          <li>Eric Liu</li>
           <li>Mark Chen</li>
-				</ul>
-			  </div>
-		  </div>
-		</div>
-	</footer>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script
-    src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous">
-</script>
-<script src="{{ url_for('static', filename='js/jquery.masonry.min.js') }}"></script>
-
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
-      // jQuery Masonry for image alignment
-      $(function() {
-        var $container = $('#container');
-
-        $container.imagesLoaded( function(){
-          $container.masonry({
-            itemSelector : '.item'
-          });
+    // jQuery Masonry for image alignment
+    $(function() {
+      var $container = $('#div_recipes');
+      var oneColumnWidth = 251;
+      var numberOfColumns = Math.floor(Math.max($container.width() / oneColumnWidth, 1));
+      var columnWidth = $container.width() / numberOfColumns;
+      console.dir({'columnWidth': columnWidth, numberOfColumns: numberOfColumns})
+      $container.imagesLoaded(function(){
+        $container.masonry({
+          itemSelector : '.item',
+          columnWidth : 251,
+          isFitWidth: true
         });
       });
-
-		$(window).scroll(function() {
-			var scrollTop = $(this).scrollTop();
-			var elementHeight = $('.block-one').height();
-			$('.bg-nav').css({
-				background: function() {
-					var a = 1 - (elementHeight - scrollTop) / elementHeight;
-					return "rgba(16,16,16," + a + ")";
-				}
-			});
-		});
-	</script>
+    });
+    $(window).scroll(function() {
+      var scrollTop = $(this).scrollTop();
+      var elementHeight = $('.block-one').height();
+      $('.bg-nav').css({
+        background: function() {
+          var a = 1 - (elementHeight - scrollTop) / elementHeight;
+          return "rgba(16,16,16," + a + ")";
+        }
+      });
+    });
+</script>
 </body>
 </html>
