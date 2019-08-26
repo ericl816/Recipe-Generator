@@ -1,9 +1,9 @@
 import requests, sys, bs4, os, json
 from collections import OrderedDict
 
-# API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
+API_KEY = 'e3c679808020ba0a3aa594c8a2300160'
 # API_KEY = 'e94b15c6de0f48798c858f4c88a9d4ed'
-API_KEY = '4268c2c2835847dc035588f26ad36de6'
+# API_KEY = '4268c2c2835847dc035588f26ad36de6'
 
 def scrape(listOfFoods):
     print('web scrape function called')
@@ -31,11 +31,11 @@ class Scraper:
         # E.g.: https://www.food2fork.com/api/search?key=e3c679808020ba0a3aa594c8a2300160&q=Eggs
         response = requests.get(self.url)
         data = json.loads(response.text)
+        if data['count'] == 0 or data['recipes'] == None:
+            print("No recipe exists for given set of ingredients...")
+            return None
         if 'error' in data and data['error'] == 'limit':
             print("50 call limit reached...")
-            return None
-        if data['count'] == 0:
-            print("No recipe exists for given set of ingredients...")
             return None
         if data['count'] > 0:
             self.num = min(self.num, data['count']) # Limited to only 50 calls per day

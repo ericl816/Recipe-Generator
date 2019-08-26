@@ -69,6 +69,8 @@ def processListOfFoods():
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
+    foodsInput = ', '.join(listOfFoods)
+    # print(foodsInput)
     recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
     if recipes_data == None:
         return render_template('404.html', page="ERROR 404")
@@ -81,7 +83,7 @@ def processListOfFoods():
 
     recipes_data = ML.assignMLranking(recipes_data)
     # print(recipes_data)
-    return render_template('results.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
+    return render_template('results.html', foodInput=foodsInput, page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
 @app.route('/recipe/<filename>')

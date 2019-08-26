@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
@@ -63,22 +63,35 @@
 
       <h5>Sort By:</h5>
       <form onsubmit="sortRecipes(event)" action="#">
-        <input type="radio" name="rank" id ="rank_op_1" checked>Social Rank
+        <input type="radio" name="rank" id="rank_op_1" checked>Social Rank
         <br>
-        <input type="radio" name="rank" id = "rank_op_2">Machine Learning Rank
+        <input type="radio" name="rank" id="rank_op_2">Machine Learning Rank
         <button type="submit">Sort</button>
       </form>
+      <!--
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Social Rank
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Social Rank</a>
+          <a class="dropdown-item" href="#">ML Rank</a>
+        </div>
+      </div>
+      -->
     </div>
   </div>
 
   <div class="block-three1">
     <div class="container">
-      <h1 class="desc">Recipes</h1><br>
+      {% if foodInput %}
+        <h1 class="desc">Recipes with: {{ foodInput }}</h1><br>
+      {% endif %}
         <div class="row">
           <div id="div_recipes">
             {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
-            <div class="item">
-              <div id={{ title }} social_rank={{ social_rank }} ml_rank={{ ml_rank }} class = "myRecipes">
+            <!-- <div class="item"> -->
+              <div class="item" id="{{ title }}" social_rank="{{ social_rank }}" ml_rank="{{ ml_rank }}">
                 <a href={{ source_url }} class="recipe-link" target="_blank">
                   <img src={{ image_url }} alt={{ title }}><br/>
                   <span class='recipe-name'>
@@ -89,10 +102,10 @@
                   <a href={{ publisher_url }}>{{ publisher_name }}</a>
                 </span>
                 <span class="pull-right">
-                  <span class="badge badge-important" id={{ title }}>{{ social_rank }}</span>
+                  <span class="badge badge-important" id="rank{{ title }}">{{ social_rank }}</span>
                 </span>
               </div>
-            </div>
+            <!-- </div> -->
             {% endfor %}
           </div>
         </div>
@@ -126,6 +139,12 @@
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
+    // Dropdown menu function (https://v4-alpha.getbootstrap.com/components/dropdowns/)
+    $('#myDropdown').on('show.bs.dropdown', function () {
+      // do something…
+      console.log("Hello!");
+    })
+
     // jQuery Masonry for image alignment
     $(function() {
       var $container = $('#div_recipes');
