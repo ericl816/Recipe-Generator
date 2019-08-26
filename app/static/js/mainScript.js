@@ -119,7 +119,7 @@ function sortRecipes(event){
 	for(var i = 0; i < recipes.length ; i++)
 	{
 		div_recipes.append(recipes[i]);
-		recipes[i].removeAttribute("class")
+		
 		if(!socialRank)
 		{
 			document.getElementById('rank'+recipes[i].getAttribute("id")).setAttribute("class","badge badge-pill badge-success");
