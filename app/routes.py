@@ -62,52 +62,50 @@ def parse():
     return redirect(url_for('index'))
 
 
-def sortRecipes(rank_type,recipes_data):
-    if(rank_type == 'social_rank'):
+def sortRecipes(rank_type, recipes_data):
+    if rank_type == 'social_rank':
         recipes_data.sort(key=lambda x: int(x[1]))
         recipes_data.reverse()
         for recipe in recipes_data:
-            recipe[7] = recipe [1]
-            print(recipe[1])
+            recipe[7] = recipe[1]
+            # print(recipe[1])
     else:
         recipes_data.sort(key=lambda x: int(x[6]))
         recipes_data.reverse()
         for recipe in recipes_data:
-            recipe[7] = recipe [6]
-            print(recipe[6])
-        
-    
+            recipe[7] = recipe[6]
+            # print(recipe[6])
     return recipes_data
 
 
 recipes_data = []
+
 @app.route('/processListOfFoods', methods=['POST'])
 def processListOfFoods():
     global recipes_data
     listOfFoods = []
     for i in request.form:
         listOfFoods.append(request.form[i])
-    #recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
+    foodsInput = ', '.join(listOfFoods)
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
 
         # with open("recipes_data.txt","wb") as fp:
-    #     pickle.dump(recipes_data,fp)
+            # pickle.dump(recipes_data,fp)
 
-    with open("recipes_data.txt", "rb") as fp:   # Unpickling
-        recipes_data = pickle.load(fp)
+    # with open("recipes_data.txt", "rb") as fp:   # Unpickling
+        # recipes_data = pickle.load(fp)
 
     if recipes_data == None:
         return render_template('404.html', page="ERROR 404")
 
-
-
     recipes_data = ML.assignMLranking(recipes_data)
 
-    #default display_rank would be social
+    # default display_rank would be social
     for recipe in recipes_data:
         recipe.append(recipe[1])
 
     # print(recipes_data)
-    return render_template('results.html', page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
+    return render_template('results.html', foodInput=foodsInput, page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
 
 @app.route('/sortListOfFoods', methods=['POST'])
 def sortListOfFoods():
@@ -115,19 +113,11 @@ def sortListOfFoods():
     rank_type = "social_rank"
     print(request.form['rank'])
 
-    if(request.form['rank'] == 'rank_op_2'):
-        rank_type = "ml_rank" 
-    
-    sorted_recipes_data = sortRecipes(rank_type,recipes_data)
+    if request.form['rank'] == 'rank_op_2':
+        rank_type = "ml_rank"
+    sorted_recipes_data = sortRecipes(rank_type, recipes_data)
     
     return render_template('results.html', page="RECIPES", data=sorted_recipes_data , error=False) # redirect to new page with recipes
-
-
-
-
-
-
-
 
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
@@ -142,7 +132,7 @@ def write_to_file(text, filename):
     file.close()
 
 
-app.run(debug=True)
+# Only for windows: app.run(debug=True)
 
 
 # export FLASK_ENV=development

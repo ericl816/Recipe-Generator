@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
@@ -62,6 +62,19 @@
       <h1 class="desc">Bon Apetit!</h1><br>
 
       <h5>Sort By:</h5>
+      <!--
+        Better looking Bootstrap dropdown table
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Social Rank
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Social Rank</a>
+          <a class="dropdown-item" href="#">ML Rank</a>
+        </div>
+      </div>
+      -->
+
       <form  method="POST" action="{{ url_for('sortListOfFoods') }}">
         <input type="radio" name="rank" id ="rank_op_1" value ="rank_op_1" checked>Social Rank
         <br>
@@ -73,7 +86,11 @@
 
   <div class="block-three1">
     <div class="container">
-      <h1 class="desc">Recipes</h1><br>
+      {% if foodInput %}
+        <h1 class="desc">Recipes with: {{ foodInput }}</h1><br>
+      {% else %}
+        <h1 class="desc">Recipes</h1><br>
+      {% endif %}
         <div class="row">
           <div id="div_recipes">
             {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank, display_rank in data: %}
