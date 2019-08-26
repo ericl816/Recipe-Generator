@@ -111,7 +111,7 @@ def processListOfFoods():
 def sortListOfFoods():
     global recipes_data
     rank_type = "social_rank"
-    print(request.form['rank'])
+    # print(request.form['rank'])
 
     if request.form['rank'] == 'rank_op_2':
         rank_type = "ml_rank"
