@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway" rel="stylesheet">
 
@@ -68,12 +68,25 @@
         <input type="radio" name="rank" id = "rank_op_2" value ="rank_op_2">Machine Learning Rank
         <button type="submit">Sort</button>
       </form>
+      <!--
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Social Rank
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Social Rank</a>
+          <a class="dropdown-item" href="#">ML Rank</a>
+        </div>
+      </div>
+      -->
     </div>
   </div>
 
   <div class="block-three1">
     <div class="container">
-      <h1 class="desc">Recipes</h1><br>
+      {% if foodInput %}
+        <h1 class="desc">Recipes with: {{ foodInput }}</h1><br>
+      {% endif %}
         <div class="row">
           <div id="div_recipes">
             {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank, display_rank in data: %}
@@ -91,7 +104,7 @@
                 <span class="pull-right">
                   <span class="badge badge-important" id="rank{{ title }}">{{ display_rank }}</span>
                 </span>
-              
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -126,6 +139,12 @@
 <script src="{{ url_for('static', filename='js/mainScript.js') }}"></script>
 
 <script type="text/javascript">
+    // Dropdown menu function (https://v4-alpha.getbootstrap.com/components/dropdowns/)
+    $('#myDropdown').on('show.bs.dropdown', function () {
+      // do something…
+      console.log("Hello!");
+    })
+
     // jQuery Masonry for image alignment
     $(function() {
       var $container = $('#div_recipes');

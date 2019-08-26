@@ -68,6 +68,7 @@ function removeFood () {
 	grandParent.removeChild(parent);
 }
 
+// For sort by function in results page
 function sortRecipes(event){
 	event.preventDefault();
 	socialRank = true;
@@ -77,7 +78,10 @@ function sortRecipes(event){
 	console.log("socialRank:" + socialRank);
 	recipes = Array.from(document.getElementById('div_recipes').children);
 
-	recipes.sort(function(a,b){
+	recipes.sort(function(a, b) {
+		return socialRank ? parseInt(a.getAttribute("social_rank"),10) > parseInt(b.getAttribute("social_rank"),10) : parseInt(a.getAttribute("ml_rank"),10) > parseInt(b.getAttribute("ml_rank"),10);
+
+		/*
 		if(socialRank)
 		{
 			
@@ -96,8 +100,15 @@ function sortRecipes(event){
 			}
 			else
 				return 1;
-		}
-	})
+		*/
+	});
+	for(var i = 0; i < recipes.length ; i++)
+	{
+		if(!socialRank)
+		{ console.log(recipes[i].getAttribute('ml_rank'));}
+		else
+		{ console.log(recipes[i].getAttribute('social_rank'));}
+	}
 
 	for(var i = 0; i < recipes.length ; i++)
 	{
@@ -113,9 +124,6 @@ function sortRecipes(event){
 	{
 		div_recipes.removeChild(div_recipes.childNodes[0]);
 	}
-
-	
-
 	for(var i = 0; i < recipes.length ; i++)
 	{
 
