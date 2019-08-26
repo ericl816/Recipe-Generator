@@ -118,7 +118,10 @@ function sortRecipes(event){
 
 	for(var i = 0; i < recipes.length ; i++)
 	{
-		div_recipes.append(recipes[i]);
+
+		recipes[i].removeAttribute("style");
+		div_recipes.appendChild(recipes[i]);
+		
 		
 		if(!socialRank)
 		{

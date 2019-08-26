@@ -62,10 +62,10 @@
       <h1 class="desc">Bon Apetit!</h1><br>
 
       <h5>Sort By:</h5>
-      <form onsubmit="sortRecipes(event)" action="#">
-        <input type="radio" name="rank" id ="rank_op_1" checked>Social Rank
+      <form  method="POST" action="{{ url_for('sortListOfFoods') }}">
+        <input type="radio" name="rank" id ="rank_op_1" value ="rank_op_1" checked>Social Rank
         <br>
-        <input type="radio" name="rank" id = "rank_op_2">Machine Learning Rank
+        <input type="radio" name="rank" id = "rank_op_2" value ="rank_op_2">Machine Learning Rank
         <button type="submit">Sort</button>
       </form>
     </div>
@@ -76,7 +76,7 @@
       <h1 class="desc">Recipes</h1><br>
         <div class="row">
           <div id="div_recipes">
-            {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank in data: %}
+            {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank, display_rank in data: %}
             
               <div id="{{ title }}" social_rank="{{ social_rank }}" ml_rank="{{ ml_rank }}" class = "item">
                 <a href={{ source_url }} class="recipe-link" target="_blank">
@@ -89,7 +89,7 @@
                   <a href={{ publisher_url }}>{{ publisher_name }}</a>
                 </span>
                 <span class="pull-right">
-                  <span class="badge badge-important" id="rank{{ title }}">{{ social_rank }}</span>
+                  <span class="badge badge-important" id="rank{{ title }}">{{ display_rank }}</span>
                 </span>
               
             </div>
