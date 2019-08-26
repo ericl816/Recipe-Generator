@@ -1,8 +1,6 @@
-1. Finish sort by function in results page
-2. Implement ML model
-3. Make site mobile-optimized
-4. Add user database with Flask and DB/SQL
+1. Implement ML model
+2. Add user database with Flask and DB/SQL
 	- User signup and login
 	- User profile
 	- Liking recipes feature
-5. Make mobile-version of site
+3. Make site mobile-optimized and/or mobile-version of site

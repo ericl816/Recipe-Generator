@@ -76,9 +76,15 @@
       -->
 
       <form  method="POST" action="{{ url_for('sortListOfFoods') }}">
-        <input type="radio" name="rank" id ="rank_op_1" value ="rank_op_1" checked>Social Rank
-        <br>
-        <input type="radio" name="rank" id = "rank_op_2" value ="rank_op_2">Machine Learning Rank
+        {% if checkedButton == "social_rank" %}
+          <input type="radio" name="rank" id ="rank_op_1" value ="rank_op_1" checked>Social Rank
+          <br>
+          <input type="radio" name="rank" id = "rank_op_2" value ="rank_op_2">Machine Learning Rank
+        {% elif checkedButton == "ml_rank" %}
+          <input type="radio" name="rank" id ="rank_op_1" value ="rank_op_1">Social Rank
+          <br>
+          <input type="radio" name="rank" id = "rank_op_2" value ="rank_op_2" checked>Machine Learning Rank
+        {% endif %}
         <button type="submit">Sort</button>
       </form>
     </div>

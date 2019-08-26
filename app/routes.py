@@ -79,11 +79,11 @@ def sortRecipes(rank_type, recipes_data):
 
 
 recipes_data = []
+listOfFoods = []
 
 @app.route('/processListOfFoods', methods=['POST'])
 def processListOfFoods():
-    global recipes_data
-    listOfFoods = []
+    global recipes_data, listOfFoods
     for i in request.form:
         listOfFoods.append(request.form[i])
     foodsInput = ', '.join(listOfFoods)
@@ -105,19 +105,20 @@ def processListOfFoods():
         recipe.append(recipe[1])
 
     # print(recipes_data)
-    return render_template('results.html', foodInput=foodsInput, page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes
+    return render_template('results.html', checkedButton="social_rank", foodInput=foodsInput, page="RECIPES", data=recipes_data, error=False) # redirect to new page with recipes --> default checked button is social_rank
 
 @app.route('/sortListOfFoods', methods=['POST'])
 def sortListOfFoods():
-    global recipes_data
+    global recipes_data, listOfFoods
     rank_type = "social_rank"
+    foodsInput = ', '.join(listOfFoods)
     # print(request.form['rank'])
 
     if request.form['rank'] == 'rank_op_2':
         rank_type = "ml_rank"
     sorted_recipes_data = sortRecipes(rank_type, recipes_data)
     
-    return render_template('results.html', page="RECIPES", data=sorted_recipes_data , error=False) # redirect to new page with recipes
+    return render_template('results.html', checkedButton=rank_type, foodInput=foodsInput, page="RECIPES", data=sorted_recipes_data , error=False) # redirect to new page with recipes
 
 
 # Create recipes with machine learning model and assigns given score to each model (the higher the score the better)
