@@ -12,6 +12,8 @@ import web_scraper as ws
 import pickle #for developement purposes
 from operator import itemgetter #for sort function
 
+recipes_data = []
+listOfFoods = []
 
 # Route all of our functions to URL
 @app.route('/')
@@ -77,17 +79,15 @@ def sortRecipes(rank_type, recipes_data):
             # print(recipe[6])
     return recipes_data
 
-
-recipes_data = []
-listOfFoods = []
-
 @app.route('/processListOfFoods', methods=['POST'])
 def processListOfFoods():
     global recipes_data, listOfFoods
+    listOfFoods = [] # Clear list every query
     for i in request.form:
         listOfFoods.append(request.form[i])
     foodsInput = ', '.join(listOfFoods)
-    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrape()
+    print(foodsInput)
+    recipes_data = ws.Scraper(listOfFoods, 30, 1).scrapeAPI()
 
         # with open("recipes_data.txt","wb") as fp:
             # pickle.dump(recipes_data,fp)

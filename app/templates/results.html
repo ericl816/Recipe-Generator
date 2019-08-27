@@ -100,7 +100,6 @@
         <div class="row">
           <div id="div_recipes">
             {% for title, social_rank, image_url, source_url, publisher_name, publisher_url, ml_rank, display_rank in data: %}
-            
               <div id="{{ title }}" social_rank="{{ social_rank }}" ml_rank="{{ ml_rank }}" class = "item">
                 <a href={{ source_url }} class="recipe-link" target="_blank">
                   <img src={{ image_url }} alt={{ title }}><br/>
@@ -112,7 +111,11 @@
                   <a href={{ publisher_url }}>{{ publisher_name }}</a>
                 </span>
                 <span class="pull-right">
-                  <span class="badge badge-important" id="rank{{ title }}">{{ display_rank }}</span>
+                  {% if checkedButton == "social_rank" %}
+                    <span class="badge badge-important" id="rank{{ title }}">{{ display_rank }}</span>
+                  {% else %}
+                    <span class="badge badge-pill badge-success" id="rank{{ title }}">{{ display_rank }}</span>
+                  {% endif %}
                 </span>
               
             </div>
