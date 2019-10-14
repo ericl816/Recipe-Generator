@@ -9,7 +9,7 @@ Web App
     - Recipe Ratings (Our machine learning model assigns a score to each recipe)
     - Safety Warning (Some mixed foods in the recipes don't go well)
 
-Back-End (Flask)
+Back-End (Django)
 - Web Scraping (Selenium)
 - Parsing (BeautifulSoup)
 - ML Model (Preferably library)
