@@ -10,6 +10,6 @@ Web App
     - Safety Warning (Some mixed foods in the recipes don't go well)
 
 Back-End (Django)
-- Web Scraping (Selenium)
+- Web Scraping (Food2Fork API)
 - Parsing (BeautifulSoup)
 - ML Model (Preferably library)
